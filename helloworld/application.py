@@ -23,12 +23,12 @@ def language():
     return googletrans.LANGUAGES
 
 
-@app.route("/language_code")
+@application.route("/language_code")
 def language_code():
     return googletrans.LANGCODES
 
 
-@app.route("/translator")
+@application.route("/translator")
 def translator():
     translators = Translator()
     get_data = request.get_json()
