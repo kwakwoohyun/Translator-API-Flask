@@ -23,5 +23,25 @@ def language():
     return googletrans.LANGUAGES
 
 
+@app.route("/language_code")
+def language_code():
+    return googletrans.LANGCODES
+
+
+@app.route("/translator")
+def translator():
+    translators = Translator()
+    get_data = request.get_json()
+    origin = get_data['origin_word']
+    dest = get_data['trans_language']
+    result = translators.translate(origin, dest=dest)
+    return json.jsonify(
+        origin_launguage=result.src,  # src = 원본 언어
+        trans_language=result.dest,  # dest = 타겟 언어
+        origin_word=result.origin,  # origin = 번역할 글자
+        trans_word=result.text,  # text = 번역된 글자
+    )
+
+
 if __name__ == '__main__':
     flaskrun(application)
