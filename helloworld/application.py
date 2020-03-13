@@ -29,14 +29,14 @@ def translator():
     if request.method == 'POST':
         print("---------translator---------")
         translators = Translator()
-        get_data = request.get_json()
-        origin = get_data['origin_word']
-        dest = get_data['trans_language']
-        result = translators.translate(origin, dest=dest)
-        print(get_data)
+        origin = request.form.get('origin_word')
+        dest = request.form.get('trans_language')
         print(origin)
         print(dest)
-        print(result)
+        # get_data = request.get_json()
+        # origin = get_data.origin_word
+        # dest = get_data['trans_language']
+        result = translators.translate(origin, dest=dest)
         return json.jsonify(
             origin_launguage=result.src,  # src = 원본 언어
             trans_language=result.dest,  # dest = 타겟 언어
