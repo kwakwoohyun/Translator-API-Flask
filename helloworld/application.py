@@ -20,12 +20,14 @@ def post():
 
 @application.route("/language")
 def language():
+    print("language")
     return json.jsonify(googletrans.LANGUAGES)
 
 
 @application.route("/translator", methods=['POST'])
 def translator():
     if request.method == 'POST':
+        print("---------translator---------")
         translators = Translator()
         get_data = request.get_json()
         origin = get_data['origin_word']
